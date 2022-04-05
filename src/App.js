@@ -15,10 +15,20 @@ function Crown(props) {
     }
   }
 
-  const [playWin] = useSound("./rising-pops.mp3", { volume: 0.25 });
+  const [playTansonWin] = useSound("./tansonwin.mp3", { volume: 0.25 });
+  const [playSherlyWin] = useSound("./sherlywin.mp3", { volume: 0.25 });
+  const [playAllWin] = useSound("./allwin.mp3", { volume: 0.25 });
   useEffect(() => {
     if (props.value) {
-      playWin();
+      let winSound = "";
+      switch (props.value) {
+        case constants.PLAYER_A: playTansonWin();
+          break;
+        case constants.PLAYER_B: playSherlyWin();
+          break;
+        default: playAllWin();
+          break;
+      }
       var btn = document.querySelector(".crownSpan");
 
       PlayAffect(btn);
